@@ -1,0 +1,27 @@
+RewriteEngine On
+RewriteBase /sirekta/
+Options +FollowSymLinks
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^index$ index.php
+RewriteRule ^register$ register.php
+
+RewriteRule ^beranda_admin$ admin.php?t_admin=beranda_admin
+
+RewriteRule ^beranda_pegawai$ pegawai.php?t_pegawai=beranda_pegawai
+RewriteRule ^profil$ pegawai.php?t_pegawai=profil
+
+
+
+# X-XSS-Protection
+<IfModule mod_headers.c>
+	Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Protect database config file
+<Files env.php>
+    deny from all
+</Files>
+Options All -Indexes
